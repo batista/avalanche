@@ -58,7 +58,14 @@ $av-enable-grid-rev:          false !default;
     // Loop through all digits in the numerator and escape individually
     @for $i from 1 through str-length($numerator-as-string) {
       $digit: str-slice($numerator-as-string, $i, $i);
-      $escaped-numerator: $escaped-numerator+\3+$digit;
+
+      @if $i == 1 {
+        $escaped-numerator: $escaped-numerator+\3+$digit;
+      }
+
+      @else {
+        $escaped-numerator: $escaped-numerator+' '+$digit;
+      }
     }
 
     @return $escaped-numerator;
